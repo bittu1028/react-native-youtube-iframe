@@ -144,6 +144,7 @@ export const MAIN_SCRIPT = (
       name="viewport"
       content="width=device-width, ${scale}"
     >
+    <script src="https://www.gstatic.com/cast/js/receiver/1.0/cast_receiver.js"></script>
     <style>
       body {
         margin: 0;
@@ -169,6 +170,16 @@ export const MAIN_SCRIPT = (
     </div>
 
     <script>
+    
+    var receiver = new cast.receiver.Receiver("kGCKDefaultMediaReceiverApplicationID", ['ChromecastYoutube'],"",5);
+    var ytChannelHandler = new cast.receiver.ChannelHandler('ChromecastYoutube'); //  'using 'ChromecastYoutube' as my dev namespace. Wouldn't really be that in production.
+    ytChannelHandler.addChannelFactory(receiver.createChannelFactory('ChromecastYoutube'));
+    ytChannelHandler.addEventListener(
+            cast.receiver.Channel.EventType.MESSAGE,
+            onMessage.bind(this)
+    );
+
+    receiver.start();
       var tag = document.createElement('script');
 
       tag.src = "https://www.youtube.com/iframe_api";
