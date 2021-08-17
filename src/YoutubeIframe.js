@@ -206,7 +206,7 @@ const YoutubeIframe = (props, ref) => {
       allowWebViewZoom,
       contentScale,
     );
-    console.log(source, 'source')
+    console.log(ytScript, 'source')
 
     if (useLocalHTML) {
       const res = {html: ytScript.htmlString};
